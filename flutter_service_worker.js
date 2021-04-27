@@ -3,7 +3,7 @@ const MANIFEST = 'flutter-app-manifest';
 const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 const RESOURCES = {
-  "assets/AssetManifest.json": "7cfa6d1f9042d3f0bfbf7616f58da699",
+  "assets/AssetManifest.json": "0595372dfbb9a15f05b80064a1717046",
 "assets/FontManifest.json": "f73c9846014b53816c82915496b218dd",
 "assets/fonts/MaterialIcons-Regular.otf": "1288c9e28052e028aba623321f7826ac",
 "assets/fonts/Roboto_Slab/RobotoSlab-Bold.ttf": "b3954db228ca7701bf36469cf6c31c57",
@@ -25,18 +25,19 @@ const RESOURCES = {
 "assets/images/pointcycover.png": "de3b9ccca7973d339777452cbcd1707e",
 "assets/images/profile.png": "26d2ed3c4ea811316f6451048955bf79",
 "assets/images/sahacover.png": "a6d19d526d1561586f449b814db10f0f",
-"assets/images/supercareercover.png": "91049d9b35c088dafd2661f2474dd447",
+"assets/images/supercareercover.png": "514c856557563ece3a3fce8e58d7c5ed",
 "assets/images/turkiyepetrollericover.png": "c4f430109530050747a49817517e6ad6",
+"assets/images/vidyodan.png": "9ee0c100237e8d8e114196054a8e6968",
 "assets/NOTICES": "edb6489a86fdd76df5fdff0ab991b94b",
 "assets/packages/font_awesome_flutter/lib/fonts/fa-brands-400.ttf": "00bb2b684be61e89d1bc7d75dee30b58",
 "assets/packages/font_awesome_flutter/lib/fonts/fa-regular-400.ttf": "4b6a9b7c20913279a3ad3dd9c96e155b",
 "assets/packages/font_awesome_flutter/lib/fonts/fa-solid-900.ttf": "dffd9504fcb1894620fa41c700172994",
-"favicon.png": "5dcef449791fa27946b3d35ad8803796",
+"favicon.png": "3882e1705ba3ca431654754f06fe6fc7",
 "icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1",
 "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
-"index.html": "bf209a0108b16772e004403d082ee8aa",
-"/": "bf209a0108b16772e004403d082ee8aa",
-"main.dart.js": "a1977a205a4f9c91e5f099e78f28a770",
+"index.html": "322ec8748ac22eb7f0c902fc9bcc475e",
+"/": "322ec8748ac22eb7f0c902fc9bcc475e",
+"main.dart.js": "d88338019ae51090107c35c9085d6d4f",
 "manifest.json": "a2f3ec61fa5fa23ffe56ca46393ece6a",
 "version.json": "082a1a8d9f3b2cd6ec9e24024c66ed7c"
 };
