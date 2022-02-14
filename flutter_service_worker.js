@@ -3,43 +3,44 @@ const MANIFEST = 'flutter-app-manifest';
 const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 const RESOURCES = {
-  "assets/AssetManifest.json": "0595372dfbb9a15f05b80064a1717046",
-"assets/FontManifest.json": "f73c9846014b53816c82915496b218dd",
-"assets/fonts/MaterialIcons-Regular.otf": "1288c9e28052e028aba623321f7826ac",
-"assets/fonts/Roboto_Slab/RobotoSlab-Bold.ttf": "b3954db228ca7701bf36469cf6c31c57",
-"assets/fonts/Roboto_Slab/RobotoSlab-Light.ttf": "07d63b4d0376fca3bbedc274d9dd9233",
-"assets/fonts/Roboto_Slab/RobotoSlab-Medium.ttf": "8d557a38334591a1b4d6c12e3874346e",
-"assets/fonts/Roboto_Slab/RobotoSlab-Regular.ttf": "2e935203e7200edebf345ee19a80f435",
-"assets/fonts/Roboto_Slab/RobotoSlab-SemiBold.ttf": "c0c8f9633f1894907dcbbfd4fc9b5f6e",
-"assets/images/bmwonlinecover.png": "e9e44125d707a3d619ebb14dc4c7c601",
-"assets/images/coinycover.png": "d26d77d71b46dca3390597b16139a351",
-"assets/images/coinyprocover.png": "46077d333112d1aaa1ed28f2e2bcec7b",
-"assets/images/colendicover.png": "0cccd1ac6924f513ed1e8e261c5a12b0",
-"assets/images/doctorturkeycover.png": "52c02f30acd0aa31014ddefe1663d36e",
-"assets/images/falbellacover.png": "3838c08d7228c439ffd76b93d8f55de3",
-"assets/images/jetfixcover.png": "29e3724c0646eb67897a137571b9747f",
-"assets/images/malloftheemiratescover.png": "37808070065675c884c9a44f61b3ef29",
-"assets/images/moneypaycover.png": "3db04a83031c7ccf86d0cebf300c05ca",
-"assets/images/oldubilcover.png": "60bb06b30065e3aa1da4b0fe20eaf2f8",
-"assets/images/pakettaxicover.png": "08b56d7dd004da636c9e6ebbc2362779",
-"assets/images/pointcycover.png": "de3b9ccca7973d339777452cbcd1707e",
-"assets/images/profile.png": "26d2ed3c4ea811316f6451048955bf79",
-"assets/images/sahacover.png": "a6d19d526d1561586f449b814db10f0f",
-"assets/images/supercareercover.png": "514c856557563ece3a3fce8e58d7c5ed",
-"assets/images/turkiyepetrollericover.png": "c4f430109530050747a49817517e6ad6",
-"assets/images/vidyodan.png": "9ee0c100237e8d8e114196054a8e6968",
-"assets/NOTICES": "edb6489a86fdd76df5fdff0ab991b94b",
-"assets/packages/font_awesome_flutter/lib/fonts/fa-brands-400.ttf": "00bb2b684be61e89d1bc7d75dee30b58",
-"assets/packages/font_awesome_flutter/lib/fonts/fa-regular-400.ttf": "4b6a9b7c20913279a3ad3dd9c96e155b",
-"assets/packages/font_awesome_flutter/lib/fonts/fa-solid-900.ttf": "dffd9504fcb1894620fa41c700172994",
+  "version.json": "c420e205d8eac4ccea99913b4a50bfa7",
+"index.html": "267d056e43b0c4da89415bd7ef1b4011",
+"/": "267d056e43b0c4da89415bd7ef1b4011",
+"main.dart.js": "5995161b572884543477bcc194904b2f",
 "favicon.png": "3882e1705ba3ca431654754f06fe6fc7",
 "icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1",
 "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
-"index.html": "4a388ff75c1af16c732b508fa13aff2a",
-"/": "4a388ff75c1af16c732b508fa13aff2a",
-"main.dart.js": "d88338019ae51090107c35c9085d6d4f",
-"manifest.json": "a2f3ec61fa5fa23ffe56ca46393ece6a",
-"version.json": "082a1a8d9f3b2cd6ec9e24024c66ed7c"
+"manifest.json": "82fd91a4f27585f82a314d85b0505fd3",
+"assets/images/pointcycover.png": "de3b9ccca7973d339777452cbcd1707e",
+"assets/images/moneypaycover.png": "3db04a83031c7ccf86d0cebf300c05ca",
+"assets/images/oldubilcover.png": "60bb06b30065e3aa1da4b0fe20eaf2f8",
+"assets/images/falbellacover.png": "3838c08d7228c439ffd76b93d8f55de3",
+"assets/images/pakettaxicover.png": "08b56d7dd004da636c9e6ebbc2362779",
+"assets/images/bmwonlinecover.png": "e9e44125d707a3d619ebb14dc4c7c601",
+"assets/images/finleapconnectcover.png": "a601bd5125a6014202f89c2465748cea",
+"assets/images/supercareercover.png": "514c856557563ece3a3fce8e58d7c5ed",
+"assets/images/vidyodan.png": "9ee0c100237e8d8e114196054a8e6968",
+"assets/images/coinyprocover.png": "46077d333112d1aaa1ed28f2e2bcec7b",
+"assets/images/malloftheemiratescover.png": "37808070065675c884c9a44f61b3ef29",
+"assets/images/jetfixcover.png": "29e3724c0646eb67897a137571b9747f",
+"assets/images/doctorturkeycover.png": "52c02f30acd0aa31014ddefe1663d36e",
+"assets/images/profile.png": "26d2ed3c4ea811316f6451048955bf79",
+"assets/images/sahacover.png": "a6d19d526d1561586f449b814db10f0f",
+"assets/images/turkiyepetrollericover.png": "c4f430109530050747a49817517e6ad6",
+"assets/images/coinycover.png": "d26d77d71b46dca3390597b16139a351",
+"assets/images/colendicover.png": "0cccd1ac6924f513ed1e8e261c5a12b0",
+"assets/AssetManifest.json": "52beb71622f946e89c11553b845fae50",
+"assets/NOTICES": "39f445d0666498dc206eb7de094ae397",
+"assets/FontManifest.json": "f73c9846014b53816c82915496b218dd",
+"assets/packages/font_awesome_flutter/lib/fonts/fa-solid-900.ttf": "aa1ec80f1b30a51d64c72f669c1326a7",
+"assets/packages/font_awesome_flutter/lib/fonts/fa-regular-400.ttf": "5178af1d278432bec8fc830d50996d6f",
+"assets/packages/font_awesome_flutter/lib/fonts/fa-brands-400.ttf": "b37ae0f14cbc958316fac4635383b6e8",
+"assets/fonts/Roboto_Slab/RobotoSlab-Medium.ttf": "8d557a38334591a1b4d6c12e3874346e",
+"assets/fonts/Roboto_Slab/RobotoSlab-SemiBold.ttf": "c0c8f9633f1894907dcbbfd4fc9b5f6e",
+"assets/fonts/Roboto_Slab/RobotoSlab-Bold.ttf": "b3954db228ca7701bf36469cf6c31c57",
+"assets/fonts/Roboto_Slab/RobotoSlab-Light.ttf": "07d63b4d0376fca3bbedc274d9dd9233",
+"assets/fonts/Roboto_Slab/RobotoSlab-Regular.ttf": "2e935203e7200edebf345ee19a80f435",
+"assets/fonts/MaterialIcons-Regular.otf": "7e7a6cccddf6d7b20012a548461d5d81"
 };
 
 // The application shell files that are downloaded before a service worker can
@@ -57,7 +58,7 @@ self.addEventListener("install", (event) => {
   return event.waitUntil(
     caches.open(TEMP).then((cache) => {
       return cache.addAll(
-        CORE.map((value) => new Request(value + '?revision=' + RESOURCES[value], {'cache': 'reload'})));
+        CORE.map((value) => new Request(value, {'cache': 'reload'})));
     })
   );
 });
