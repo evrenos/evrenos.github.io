@@ -6,14 +6,16 @@ export default {
   path: '/',
 
   meta: {
-    title: 'Evrenos Evrenos — Staff QA Engineer | Fintech, Payments & Banking QA',
+    title: 'Evrenos Evrenos – Staff QA Engineer, Lead QA Engineer, Software QA Engineer',
     description:
-      'Staff QA Engineer at finbyte specialising in fintech: payment systems, credit card & installment flows, BNPL, core, open & digital banking (Vision Bank, MISPay), banking API testing and SAMA compliance.',
-    ogTitle: 'Evrenos Evrenos — Fintech, Payments & Banking QA',
+      'Evrenos Evrenos – Staff QA Engineer at finbyte, previously Lead QA Engineer and Software QA Engineer. Fintech QA: payments, digital banking, BNPL, SAMA.',
+    keywords:
+      'Evrenos Evrenos, Staff QA Engineer, Lead QA Engineer, Software QA Engineer, QA Engineer, fintech QA, payment systems testing, banking QA, open banking, BNPL, SAMA compliance, finbyte',
+    ogTitle: 'Evrenos Evrenos – Staff QA Engineer · Lead QA Engineer · Software QA Engineer',
     ogDescription:
-      'Staff QA Engineer at finbyte. Digital banking (Vision Bank), BNPL (MISPay), payment systems, open banking & banking APIs, SAMA compliance.',
+      'Staff QA Engineer at finbyte, previously Lead QA Engineer and Software QA Engineer. Fintech, payment systems, digital & open banking, BNPL, SAMA compliance.',
     ogImage: 'og-en.png',
-    ogImageAlt: 'Evrenos Evrenos — Staff QA Engineer, Fintech · Payments · Banking',
+    ogImageAlt: 'Evrenos Evrenos – Staff QA Engineer, Lead QA Engineer, Software QA Engineer',
   },
 
   a11y: {
@@ -44,7 +46,7 @@ export default {
   nav: { about: 'About', experience: 'Experience', fintech: 'Fintech', projects: 'Projects', contact: 'Contact' },
 
   hero: {
-    roles: ['Staff QA Engineer', 'Fintech QA', 'Payments & Banking QA', 'Lead QA Engineer', 'Product Owner', 'Flutter Developer'],
+    roles: ['Staff QA Engineer', 'Lead QA Engineer', 'Software QA Engineer', 'Fintech QA', 'Payments & Banking QA', 'Product Owner', 'Flutter Developer'],
     tagline: 'I test the parts of fintech where money moves — payment systems, banking applications and open banking APIs.',
     currentlyLabel: 'Currently',
     currentlyRole: 'Staff QA Engineer',
@@ -64,7 +66,7 @@ export default {
   about: {
     title: 'About',
     lead:
-      'Staff QA Engineer at finbyte, leading quality across fintech products — payment systems, banking applications and marketplace platforms.',
+      '**Staff QA Engineer** at finbyte, previously **Lead QA Engineer** and **Software QA Engineer** — leading quality across fintech products: payment systems, banking applications and marketplace platforms.',
     paragraphs: [
       'Experienced QA Engineer with lots of project experience and a track record of locating bugs in Web-based and Mobile applications before they are released into the marketplace.',
       'Able to troubleshoot on a variety of mobile devices, automated UI tests for mobile and web environments, exceptional problem-solving skills and ability to find creative solutions to issues. Leadership skills to train others on how to carry out the numerous processes that are needed.',
@@ -102,6 +104,14 @@ export default {
     lead: {
       title: 'Lead QA Engineer',
       skills: ['Postman API', 'JIRA'],
+    },
+    ladder: {
+      title: 'Career path',
+      steps: [
+        { title: 'Software QA Engineer', years: '2016 – 2021', note: 'Web & mobile QA across 12 products' },
+        { title: 'Lead QA Engineer', years: '2021 – 2025', note: 'finbyte · fintech & digital banking' },
+        { title: 'Staff QA Engineer', years: '2025 – present', note: 'finbyte · QA leadership across projects' },
+      ],
     },
     clients: {
       title: 'Key fintech projects',

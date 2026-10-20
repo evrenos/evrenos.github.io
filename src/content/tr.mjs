@@ -6,14 +6,16 @@ export default {
   path: '/tr/',
 
   meta: {
-    title: 'Evrenos Evrenos — Staff QA Engineer | Fintech, Ödeme ve Bankacılık Test Uzmanı',
+    title: 'Evrenos Evrenos – Staff QA Engineer, Lead QA Engineer, Software QA Engineer',
     description:
-      'finbyte’ta Staff QA Engineer. Fintech alanında uzman: ödeme sistemleri, kredi kartı ve taksitli ödeme akışları, BNPL, core, açık ve dijital bankacılık (Vision Bank, MISPay), bankacılık API testleri ve SAMA uyumluluğu.',
-    ogTitle: 'Evrenos Evrenos — Fintech, Ödeme ve Bankacılık QA',
+      'Evrenos Evrenos – finbyte’ta Staff QA Engineer; önceden Lead QA Engineer ve Software QA Engineer. Fintech QA: ödeme, dijital bankacılık, BNPL, SAMA.',
+    keywords:
+      'Evrenos Evrenos, Staff QA Engineer, Lead QA Engineer, Software QA Engineer, QA mühendisi, yazılım test mühendisi, fintech test, ödeme sistemleri testi, bankacılık QA, açık bankacılık, BNPL, SAMA, finbyte',
+    ogTitle: 'Evrenos Evrenos – Staff QA Engineer · Lead QA Engineer · Software QA Engineer',
     ogDescription:
-      'finbyte’ta Staff QA Engineer. Dijital bankacılık (Vision Bank), BNPL (MISPay), ödeme sistemleri, açık bankacılık ve API testleri, SAMA uyumluluğu.',
+      'finbyte’ta Staff QA Engineer; önceden Lead QA Engineer ve Software QA Engineer. Fintech, ödeme sistemleri, dijital ve açık bankacılık, BNPL, SAMA uyumluluğu.',
     ogImage: 'og-tr.png',
-    ogImageAlt: 'Evrenos Evrenos — Staff QA Engineer, Fintech · Ödeme · Bankacılık',
+    ogImageAlt: 'Evrenos Evrenos – Staff QA Engineer, Lead QA Engineer, Software QA Engineer',
   },
 
   a11y: {
@@ -44,7 +46,7 @@ export default {
   nav: { about: 'Hakkımda', experience: 'Deneyim', fintech: 'Fintech', projects: 'Projeler', contact: 'İletişim' },
 
   hero: {
-    roles: ['Staff QA Engineer', 'Fintech QA Uzmanı', 'Ödeme & Bankacılık QA', 'Lead QA Engineer', 'Product Owner', 'Flutter Geliştirici'],
+    roles: ['Staff QA Engineer', 'Lead QA Engineer', 'Software QA Engineer', 'Fintech QA Uzmanı', 'Ödeme & Bankacılık QA', 'Product Owner', 'Flutter Geliştirici'],
     tagline: 'Fintech’in paranın hareket ettiği kısımlarını test ediyorum — ödeme sistemleri, bankacılık uygulamaları ve açık bankacılık API’leri.',
     currentlyLabel: 'Şu an',
     currentlyRole: 'Staff QA Engineer',
@@ -64,7 +66,7 @@ export default {
   about: {
     title: 'Hakkımda',
     lead:
-      'finbyte’ta Staff QA Engineer olarak fintech ürünlerinde — ödeme sistemleri, bankacılık uygulamaları ve pazaryeri platformlarında — kaliteye liderlik ediyorum.',
+      'finbyte’ta **Staff QA Engineer** olarak (önceden **Lead QA Engineer** ve **Software QA Engineer**) fintech ürünlerinde — ödeme sistemleri, bankacılık uygulamaları ve pazaryeri platformlarında — kaliteye liderlik ediyorum.',
     paragraphs: [
       'Çok sayıda projede deneyim kazanmış, web ve mobil uygulamalardaki hataları ürünler pazara çıkmadan önce yakalama konusunda kanıtlanmış bir geçmişe sahip deneyimli bir QA mühendisiyim.',
       'Çok çeşitli mobil cihazlarda sorun giderme, mobil ve web ortamları için otomatik UI testleri, güçlü problem çözme becerisi ve sorunlara yaratıcı çözümler bulma yeteneğine sahibim. Gerekli süreçlerin nasıl yürütüleceği konusunda ekip arkadaşlarımı eğitebilecek liderlik becerilerim var.',
@@ -102,6 +104,14 @@ export default {
     lead: {
       title: 'Lead QA Engineer',
       skills: ['Postman API', 'JIRA'],
+    },
+    ladder: {
+      title: 'Kariyer yolu',
+      steps: [
+        { title: 'Software QA Engineer', years: '2016 – 2021', note: '12 üründe web ve mobil QA' },
+        { title: 'Lead QA Engineer', years: '2021 – 2025', note: 'finbyte · fintech ve dijital bankacılık' },
+        { title: 'Staff QA Engineer', years: '2025 – günümüz', note: 'finbyte · projeler genelinde QA liderliği' },
+      ],
     },
     clients: {
       title: 'Öne çıkan fintech projeleri',

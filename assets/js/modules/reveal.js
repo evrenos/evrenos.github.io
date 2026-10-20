@@ -1,5 +1,5 @@
 import { $$, prefersReducedMotion } from './utils.js';
-import { TextScramble } from './scramble.js';
+import { scrambleOverlay } from './scramble.js';
 
 /** Fade/slide elements in when they enter the viewport; count-up numbers; scramble section titles. */
 export function initReveal() {
@@ -18,7 +18,7 @@ export function initReveal() {
       e.target.querySelectorAll('[data-count]').forEach(countUp);
       if (e.target.matches('[data-count]')) countUp(e.target);
       const title = e.target.querySelector('[data-scramble-reveal]');
-      if (title) new TextScramble(title).set(title.textContent);
+      if (title) scrambleOverlay(title);
       io.unobserve(e.target);
     }
   }, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });

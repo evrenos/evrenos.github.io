@@ -38,37 +38,65 @@ function uniqueIndustries(lang) {
 /* ---------- structured data ---------- */
 function jsonLd(t, now) {
   const url = SITE + t.path;
+  const tr = t.lang === 'tr';
+  const ROLES = ['Staff QA Engineer', 'Lead QA Engineer', 'Software QA Engineer'];
+  const finbyte = { '@type': 'Organization', '@id': `${SITE}/#finbyte`, name: 'finbyte', url: FINBYTE };
+  const occupation = (name, description) => ({
+    '@type': 'Occupation',
+    name,
+    description,
+    occupationLocation: { '@type': 'Country', name: 'Türkiye' },
+    skills: [...t.experience.staff.skills, ...t.experience.lead.skills].join(', '),
+  });
   return {
     '@context': 'https://schema.org',
-    '@type': 'ProfilePage',
-    '@id': `${url}#page`,
-    url,
-    name: t.meta.title,
-    description: t.meta.description,
-    inLanguage: t.lang,
-    dateModified: now.toISOString().slice(0, 10),
-    mainEntity: {
-      '@type': 'Person',
-      '@id': `${SITE}/#person`,
-      name: 'Evrenos Evrenos',
-      url: `${SITE}/`,
-      image: `${SITE}/assets/images/profile.png`,
-      jobTitle: 'Staff QA Engineer',
-      description: t.meta.description,
-      email: `mailto:${EMAIL}`,
-      worksFor: { '@type': 'Organization', name: 'finbyte', url: FINBYTE },
-      address: { '@type': 'PostalAddress', addressCountry: 'TR' },
-      hasOccupation: {
-        '@type': 'Occupation',
-        name: 'Staff QA Engineer',
-        occupationLocation: { '@type': 'Country', name: 'Türkiye' },
-        skills: [...t.experience.staff.skills, ...t.experience.lead.skills].join(', '),
+    '@graph': [
+      {
+        '@type': 'WebSite',
+        '@id': `${SITE}/#website`,
+        url: `${SITE}/`,
+        name: 'Evrenos Evrenos',
+        alternateName: 'Evrenos Evrenos – Staff QA Engineer',
+        inLanguage: ['en', 'tr'],
+        publisher: { '@id': `${SITE}/#person` },
       },
-      knowsAbout: t.lang === 'tr'
-        ? ['Fintech', 'Ödeme sistemleri', 'Kredi kartı ödemeleri', 'Taksitli ödeme', 'Şimdi al sonra öde (BNPL)', 'Dijital bankacılık', 'Vadeli mevduat', 'Sadakat sistemleri', 'Core banking', 'Açık bankacılık', 'Bankacılık API testi', 'Pazaryeri QA', 'SAMA uyumluluğu', 'Yazılım test', 'Mobil test', 'Test otomasyonu', 'Postman', 'JIRA']
-        : ['Fintech', 'Payment systems', 'Credit card payments', 'Installment payments', 'Buy now pay later (BNPL)', 'Digital banking', 'Time deposits', 'Loyalty systems', 'Core banking', 'Open banking', 'Banking API testing', 'Marketplace QA', 'SAMA compliance', 'Software quality assurance', 'Mobile testing', 'Test automation', 'Postman', 'JIRA'],
-      sameAs: [LINKEDIN, GITHUB],
-    },
+      {
+        '@type': 'ProfilePage',
+        '@id': `${url}#page`,
+        url,
+        name: t.meta.title,
+        description: t.meta.description,
+        inLanguage: t.lang,
+        isPartOf: { '@id': `${SITE}/#website` },
+        about: { '@id': `${SITE}/#person` },
+        mainEntity: { '@id': `${SITE}/#person` },
+        primaryImageOfPage: `${SITE}/assets/images/profile.png`,
+        dateModified: now.toISOString().slice(0, 10),
+      },
+      {
+        '@type': 'Person',
+        '@id': `${SITE}/#person`,
+        name: 'Evrenos Evrenos',
+        givenName: 'Evrenos',
+        familyName: 'Evrenos',
+        url: `${SITE}/`,
+        image: `${SITE}/assets/images/profile.png`,
+        jobTitle: ROLES,
+        description: t.meta.description,
+        email: `mailto:${EMAIL}`,
+        worksFor: finbyte,
+        address: { '@type': 'PostalAddress', addressCountry: 'TR' },
+        hasOccupation: [
+          occupation('Staff QA Engineer', tr ? 'finbyte, Haziran 2025 – günümüz' : 'finbyte, June 2025 – present'),
+          occupation('Lead QA Engineer', tr ? 'finbyte, Haziran 2021 – Haziran 2025' : 'finbyte, June 2021 – June 2025'),
+          occupation('Software QA Engineer', tr ? '2016 – 2021, web ve mobil uygulamalar' : '2016 – 2021, web and mobile applications'),
+        ],
+        knowsAbout: tr
+          ? ['Yazılım kalite güvencesi', 'Fintech', 'Ödeme sistemleri', 'Kredi kartı ödemeleri', 'Taksitli ödeme', 'Şimdi al sonra öde (BNPL)', 'Dijital bankacılık', 'Vadeli mevduat', 'Sadakat sistemleri', 'Core banking', 'Açık bankacılık', 'Bankacılık API testi', 'Pazaryeri QA', 'SAMA uyumluluğu', 'Mobil test', 'Test otomasyonu', 'Postman', 'JIRA']
+          : ['Software quality assurance', 'Fintech', 'Payment systems', 'Credit card payments', 'Installment payments', 'Buy now pay later (BNPL)', 'Digital banking', 'Time deposits', 'Loyalty systems', 'Core banking', 'Open banking', 'Banking API testing', 'Marketplace QA', 'SAMA compliance', 'Mobile testing', 'Test automation', 'Postman', 'JIRA'],
+        sameAs: [LINKEDIN, GITHUB],
+      },
+    ],
   };
 }
 
@@ -85,6 +113,7 @@ function head(t, now) {
   <title>${esc(t.meta.title)}</title>
   <meta name="description" content="${esc(t.meta.description)}">
   <meta name="author" content="Evrenos Evrenos">
+  <meta name="keywords" content="${esc(t.meta.keywords)}">
   <meta name="robots" content="index, follow, max-image-preview:large">
   <link rel="canonical" href="${url}">
   <link rel="alternate" hreflang="en" href="${SITE}/">
@@ -205,10 +234,7 @@ function hero(t) {
 
       <p class="hero__prompt mono" data-reveal><span class="accent">~/evrenos</span> <span class="muted">$</span> whoami</p>
 
-      <h1 class="hero__name" id="hero-name" data-reveal>
-        <span class="sr-only">Evrenos Evrenos</span>
-        <span aria-hidden="true" id="hero-name-text">Evrenos Evrenos</span>
-      </h1>
+      <h1 class="hero__name" id="hero-name" aria-label="Evrenos Evrenos" data-reveal><span id="hero-name-text">Evrenos Evrenos</span></h1>
 
       <p class="hero__roles" data-reveal>
         <span class="sr-only">${esc(h.roles.join(', '))}</span>
@@ -329,6 +355,14 @@ function experience(t, now) {
   const skills = (arr) => `<ul class="xp__skills">${arr.map((s) => `<li>${esc(s)}</li>`).join('')}</ul>`;
   return `<section class="section" id="experience" aria-labelledby="experience-title">
       ${sectionHead(2, 'experience', x.title)}
+
+      <ol class="ladder" aria-label="${esc(x.ladder.title)}" data-reveal>
+        ${x.ladder.steps.map((st, i) => `<li class="ladder__step${i === x.ladder.steps.length - 1 ? ' is-current' : ''}">
+          <span class="ladder__years mono">${esc(st.years)}</span>
+          <h3 class="ladder__title">${esc(st.title)}</h3>
+          <p class="ladder__note">${esc(st.note)}</p>
+        </li>`).join('\n        ')}
+      </ol>
 
       <div class="xp">
         <article class="xp__company" data-reveal>

@@ -7,7 +7,7 @@ import { initNav } from './modules/nav.js';
 import { initReveal } from './modules/reveal.js';
 import { initBackground } from './modules/background.js';
 import { initPointerEffects } from './modules/pointer.js';
-import { TextScramble, initHoverScramble } from './modules/scramble.js';
+import { initHoverScramble, scrambleOverlay } from './modules/scramble.js';
 import { initTypewriter } from './modules/typewriter.js';
 import { initProjects } from './modules/projects.js';
 import { initPipeline } from './modules/pipeline.js';
@@ -89,8 +89,8 @@ async function init() {
   safe('pipeline', initPipeline);
 
   // Hero intro: decrypt the name, then start cycling roles.
-  const name = $('#hero-name-text');
-  if (name) safe('hero', () => new TextScramble(name).set(name.textContent, { speed: 0.8 }));
+  const name = $('#hero-name');
+  if (name) safe('hero', () => scrambleOverlay(name, { speed: 0.8 }));
   safe('typewriter', () => initTypewriter($('#typed')));
 }
 

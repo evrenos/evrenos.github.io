@@ -425,7 +425,7 @@ main { position: relative; }
   font-weight: 700; line-height: 1.08; letter-spacing: -0.01em;
   margin-bottom: 12px;
 }
-.hero__name [aria-hidden] {
+#hero-name-text {
   background: linear-gradient(100deg, var(--text) 0%, var(--text) 45%, var(--accent) 50%, var(--text) 55%, var(--text) 100%);
   background-size: 300% 100%;
   background-position: 100% 0;
@@ -1257,3 +1257,48 @@ html:has(dialog[open]) { overflow: hidden; }
   .pipeline__run span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 }
 @media (max-width: 599px) { .pmodal__media { aspect-ratio: 16 / 10; } }
+
+/* ---------- Career path ladder (Experience) ---------- */
+.ladder {
+  position: relative;
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px;
+  margin-bottom: clamp(28px, 4vw, 40px);
+}
+.ladder__step {
+  position: relative;
+  padding: 18px 20px 20px;
+  border: 1px solid var(--line); border-radius: var(--radius);
+  background: color-mix(in srgb, var(--bg-elev) 80%, transparent);
+}
+.ladder__step + .ladder__step::before {
+  /* connector arrow between steps */
+  content: "→"; position: absolute; left: -16px; top: 50%; width: 16px;
+  transform: translateY(-50%);
+  text-align: center; font-family: var(--font-mono); color: var(--accent);
+}
+.ladder__step.is-current {
+  border-color: rgba(var(--accent-rgb), 0.5);
+  background: linear-gradient(135deg, var(--accent-soft), transparent 70%), var(--bg-elev);
+  box-shadow: 0 10px 30px -18px rgba(var(--accent-rgb), 0.8);
+}
+.ladder__years { font-size: 12px; color: var(--accent); }
+.ladder__title { margin: 4px 0 2px; font-size: clamp(18px, 1.9vw, 21px); font-weight: 700; line-height: 1.25; }
+.ladder__note { font-size: 14.5px; color: var(--muted); }
+.js .ladder[data-reveal] .ladder__step { opacity: 0; transform: translateY(14px); transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out); }
+.js .ladder[data-reveal] .ladder__step:nth-child(2) { transition-delay: 0.15s; }
+.js .ladder[data-reveal] .ladder__step:nth-child(3) { transition-delay: 0.3s; }
+.js .ladder.is-visible .ladder__step, .no-fx .ladder__step { opacity: 1; transform: none; }
+@media (max-width: 799px) {
+  .ladder { grid-template-columns: 1fr; gap: 14px; }
+  .ladder__step + .ladder__step::before { content: "↓"; left: 50%; top: -15px; width: 16px; transform: translateX(-50%); }
+}
+@media (prefers-reduced-motion: reduce) { .js .ladder[data-reveal] .ladder__step { opacity: 1; transform: none; } }
+
+/* Scramble overlay: animated copy above a heading whose real text stays intact */
+.scramble-overlay {
+  position: absolute; margin: 0 !important; pointer-events: none;
+  display: block; white-space: nowrap; text-wrap: nowrap;
+  -webkit-text-fill-color: currentColor; color: var(--text);
+}
+.is-scrambling { color: transparent !important; -webkit-text-fill-color: transparent !important; }
+.is-scrambling * { -webkit-text-fill-color: transparent !important; }

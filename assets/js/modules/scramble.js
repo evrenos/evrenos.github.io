@@ -58,6 +58,44 @@ export class TextScramble {
   };
 }
 
+/**
+ * Scramble a heading without ever changing its real text: an aria-hidden copy is laid
+ * over it (as a sibling, not a child) and animated, while the heading itself is only
+ * made transparent. Crawlers that render JS therefore always read the clean heading.
+ */
+export function scrambleOverlay(el, opts) {
+  const text = el.textContent.trim();
+  if (prefersReducedMotion() || !text || !el.parentElement) return Promise.resolve();
+
+  const parent = el.parentElement;
+  if (getComputedStyle(parent).position === 'static') parent.style.position = 'relative';
+  const fx = document.createElement('span');
+  fx.className = `${el.className} scramble-overlay`;
+  fx.setAttribute('aria-hidden', 'true');
+  fx.style.width = `${el.offsetWidth}px`;
+  fx.style.height = `${el.offsetHeight}px`;
+  fx.textContent = text;
+  parent.append(fx);
+  el.classList.add('is-scrambling');
+
+  // Track the heading's live position (it may still be sliding in from the reveal).
+  let tracking = true;
+  const sync = () => {
+    const pr = parent.getBoundingClientRect();
+    const er = el.getBoundingClientRect();
+    fx.style.left = `${er.left - pr.left}px`;
+    fx.style.top = `${er.top - pr.top}px`;
+    if (tracking) requestAnimationFrame(sync);
+  };
+  sync();
+
+  return new TextScramble(fx).set(text, opts).then(() => {
+    tracking = false;
+    el.classList.remove('is-scrambling');
+    fx.remove();
+  });
+}
+
 /** Scramble on hover/focus for elements marked [data-scramble-hover]. */
 export function initHoverScramble() {
   for (const el of $$('[data-scramble-hover]')) {
