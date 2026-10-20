@@ -1,45 +1,457 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <!--
-    If you are serving your web app in a path other than the root, change the
-    href value below to reflect the base path you are serving from.
-
-    The path provided below has to start and end with a slash "/" in order for
-    it to work correctly.
-
-    Fore more details:
-    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
-  -->
-  <base href="/">
-
   <meta charset="UTF-8">
-  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description" content="A new Flutter project.">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; manifest-src 'self'; worker-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
 
-  <!-- iOS meta tags & icons -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="flutter_portfolio">
+  <title>Evrenos Evrenos — Software QA Engineer · Product Owner · Flutter Developer</title>
+  <meta name="description" content="Portfolio of Evrenos Evrenos: Software QA Engineer, Product Owner and Flutter Developer. 13 shipped web and mobile projects across fintech, e-commerce, health, mobility and more.">
+  <meta name="author" content="Evrenos Evrenos">
+  <link rel="canonical" href="https://evrenos.github.io/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://evrenos.github.io/">
+  <meta property="og:title" content="Evrenos Evrenos — Software QA Engineer">
+  <meta property="og:description" content="Software QA Engineer, Product Owner and Flutter Developer. 13 shipped web and mobile projects.">
+  <meta property="og:image" content="https://evrenos.github.io/assets/images/profile.png">
+  <meta name="twitter:card" content="summary">
+
+  <meta name="theme-color" content="#faf9f7">
+  <meta name="color-scheme" content="light dark">
+  <link rel="icon" type="image/png" href="favicon.png">
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
-
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png"/>
-
-  <title>flutter_portfolio</title>
   <link rel="manifest" href="manifest.json">
+
+  <link rel="preload" href="assets/fonts/Roboto_Slab/RobotoSlab-Bold.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="assets/fonts/Roboto_Slab/RobotoSlab-Regular.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="assets/css/main.css">
+
+  <!-- Sets theme + boot state before first paint to avoid a flash. -->
+  <script src="assets/js/theme-init.js"></script>
+  <script src="assets/js/nomodule.js" nomodule></script>
+  <script src="assets/js/main.js" type="module"></script>
 </head>
 <body>
-  <!-- This script installs service_worker.js to provide PWA functionality to
-       application. For more information, see:
-       https://developers.google.com/web/fundamentals/primers/service-workers -->
-  <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('flutter-first-frame', function () {
-        navigator.serviceWorker.register('flutter_service_worker.js?v=1591317144');
-      });
-    }
-  </script>
-  <script src="main.dart.js" type="application/javascript"></script>
+  <!-- Icon sprite -->
+  <svg class="sprite" aria-hidden="true" focusable="false">
+    <symbol id="i-github" viewBox="0 0 24 24"><path fill="currentColor" d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></symbol>
+    <symbol id="i-linkedin" viewBox="0 0 24 24"><path fill="currentColor" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.125 2.062 2.062 0 0 1 0 4.125zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></g></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></g></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></symbol>
+    <symbol id="i-arrow-up" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="m5 12 7-7 7 7M12 19V5"/></symbol>
+    <symbol id="i-external" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M7 7h10v10M7 17 17 7"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="14" height="14" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></g></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></g></symbol>
+    <symbol id="i-terminal" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="m4 17 6-6-6-6M12 19h8"/></symbol>
+    <symbol id="i-command" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M15 6v12a3 3 0 1 0 3-3H6a3 3 0 1 0 3 3V6a3 3 0 1 0-3 3h12a3 3 0 1 0-3-3"/></symbol>
+  </svg>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- First-visit boot sequence (shown only when html.is-booting) -->
+  <div class="boot" aria-hidden="true">
+    <div class="boot__window">
+      <div class="boot__bar"><span></span><span></span><span></span><em>evrenos@portfolio: ~</em></div>
+      <pre class="boot__log" id="boot-log"></pre>
+    </div>
+    <p class="boot__skip">press any key to skip</p>
+  </div>
+
+  <div class="bg-grid" aria-hidden="true"></div>
+  <canvas class="bg-canvas" id="bg-canvas" aria-hidden="true"></canvas>
+  <div class="progress" aria-hidden="true"><span id="progress-bar"></span></div>
+
+  <header class="header" id="header">
+    <div class="header__inner">
+      <a class="logo" href="#home" aria-label="Evrenos Evrenos — home">
+        <span class="logo__bracket" aria-hidden="true">&lt;</span><span aria-hidden="true" data-scramble-hover>EVRENOS EVRENOS</span><span class="logo__bracket" aria-hidden="true">/&gt;</span>
+      </a>
+
+      <nav class="nav" id="nav" aria-label="Primary">
+        <ul class="nav__list" id="nav-list">
+          <li><a class="nav__link" href="#home" data-section="home"><span class="nav__num">00</span><span data-scramble-hover>Home</span></a></li>
+          <li><a class="nav__link" href="#about" data-section="about"><span class="nav__num">01</span><span data-scramble-hover>About</span></a></li>
+          <li><a class="nav__link" href="#projects" data-section="projects"><span class="nav__num">02</span><span data-scramble-hover>Projects</span></a></li>
+          <li><a class="nav__link" href="#contact" data-section="contact"><span class="nav__num">03</span><span data-scramble-hover>Contact</span></a></li>
+        </ul>
+        <span class="nav__indicator" id="nav-indicator" aria-hidden="true"></span>
+      </nav>
+
+      <div class="header__actions">
+        <button class="kbd-btn" type="button" data-palette-open aria-label="Open command menu" title="Command menu (Ctrl / ⌘ + K)">
+          <svg class="icon" aria-hidden="true"><use href="#i-search"/></svg>
+          <kbd><span data-mod-key>Ctrl</span> K</kbd>
+        </button>
+        <button class="icon-btn theme-toggle" type="button" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle theme">
+          <svg class="icon icon--sun" aria-hidden="true"><use href="#i-sun"/></svg>
+          <svg class="icon icon--moon" aria-hidden="true"><use href="#i-moon"/></svg>
+        </button>
+        <button class="icon-btn burger" type="button" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="nav-list">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- 00 · HOME -->
+    <section class="hero" id="home" aria-labelledby="hero-name">
+      <div class="hero__avatar" data-reveal>
+        <span class="hero__ring" aria-hidden="true"></span>
+        <img src="assets/images/profile.png" alt="Portrait of Evrenos Evrenos" width="200" height="200" fetchpriority="high">
+      </div>
+
+      <p class="hero__prompt mono" data-reveal><span class="accent">~/evrenos</span> <span class="muted">$</span> whoami</p>
+
+      <h1 class="hero__name" id="hero-name" data-reveal>
+        <span class="sr-only">Evrenos Evrenos</span>
+        <span aria-hidden="true" id="hero-name-text">Evrenos Evrenos</span>
+      </h1>
+
+      <p class="hero__roles" data-reveal>
+        <span class="sr-only">Software QA Engineer, Product Owner, Flutter Developer</span>
+        <span aria-hidden="true" class="hero__typed" id="typed" data-roles='["Software QA Engineer","Product Owner","Flutter Developer","Lead QA Engineer"]'>Software QA Engineer</span><span class="caret" aria-hidden="true"></span>
+      </p>
+
+      <ul class="socials" data-reveal aria-label="Social links">
+        <li><a class="social" href="https://www.linkedin.com/in/evrenos-evrenos/" target="_blank" rel="noopener noreferrer" data-magnetic aria-label="LinkedIn profile (opens in a new tab)"><svg class="icon" aria-hidden="true"><use href="#i-linkedin"/></svg></a></li>
+        <li><a class="social" href="https://github.com/evrenos" target="_blank" rel="noopener noreferrer" data-magnetic aria-label="GitHub profile (opens in a new tab)"><svg class="icon" aria-hidden="true"><use href="#i-github"/></svg></a></li>
+        <li><a class="social" href="mailto:evrenosevrenos@outlook.com" data-magnetic aria-label="Send an email"><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg></a></li>
+      </ul>
+
+      <div class="hero__cta" data-reveal>
+        <a class="btn btn--primary" href="#projects" data-magnetic>
+          <span>View projects</span>
+          <svg class="icon" aria-hidden="true"><use href="#i-external"/></svg>
+        </a>
+        <button class="btn btn--ghost" type="button" data-palette-open data-magnetic>
+          <svg class="icon" aria-hidden="true"><use href="#i-terminal"/></svg>
+          <span>Command menu</span>
+        </button>
+      </div>
+
+      <a class="scroll-hint" href="#about" aria-label="Scroll to About">
+        <span class="scroll-hint__mouse" aria-hidden="true"></span>
+        <span class="mono">scroll</span>
+      </a>
+    </section>
+
+    <!-- Stats + industries strip -->
+    <section class="strip" aria-label="Highlights">
+      <ul class="stats">
+        <li class="stat" data-reveal><strong data-count="13">13</strong><span>Shipped projects</span></li>
+        <li class="stat" data-reveal><strong data-count="25" id="stat-industries">25</strong><span>Industry tags</span></li>
+        <li class="stat" data-reveal><strong data-count="3">3</strong><span>Platforms · Web, Android, iOS</span></li>
+        <li class="stat" data-reveal><strong data-count="2016" data-count-from="1990">2016</strong><span>Shipping since</span></li>
+      </ul>
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee__track" id="marquee-track"></div>
+      </div>
+    </section>
+
+    <!-- 01 · ABOUT -->
+    <section class="section" id="about" aria-labelledby="about-title">
+      <header class="section__head" data-reveal>
+        <span class="section__index mono">01.</span>
+        <h2 class="section__title" id="about-title" data-scramble-reveal>About</h2>
+        <span class="section__rule" aria-hidden="true"></span>
+      </header>
+
+      <div class="about">
+        <div class="about__text">
+          <p class="lead" data-reveal>Experienced QA Engineer with lots of project experience and a track record of locating bugs in Web-based and Mobile applications before they are released into the marketplace.</p>
+          <p data-reveal>Able to troubleshoot on a variety of mobile devices, automated UI tests for mobile and web environments, exceptional problem-solving skills and ability to find creative solutions to issues. Leadership skills to train others on how to carry out the numerous processes that are needed.</p>
+
+          <div class="resume" data-reveal>
+            <h3 class="resume__title mono">RESUME</h3>
+            <p>It’s <time id="today"></time>, check this out:
+              <a class="link" href="https://www.linkedin.com/in/evrenos-evrenos/" target="_blank" rel="noopener noreferrer">linkedin.com/in/evrenos-evrenos/</a>.
+              It’s up to date.</p>
+            <a class="btn btn--primary" href="https://www.linkedin.com/in/evrenos-evrenos/" target="_blank" rel="noopener noreferrer" data-magnetic>
+              <span>Open resume</span>
+              <svg class="icon" aria-hidden="true"><use href="#i-external"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <figure class="editor" data-reveal aria-label="Profile summary as code">
+          <div class="editor__bar">
+            <span class="editor__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+            <span class="editor__tab mono">evrenos.ts</span>
+            <span class="editor__lang mono" aria-hidden="true">TypeScript</span>
+          </div>
+<pre class="editor__code mono" tabindex="0"><code><span class="ln"><span class="tk-k">const</span> <span class="tk-v">evrenos</span> <span class="tk-p">=</span> {</span><span class="ln">  <span class="tk-f">name</span>: <span class="tk-s">"Evrenos Evrenos"</span>,</span><span class="ln">  <span class="tk-f">roles</span>: [</span><span class="ln">    <span class="tk-s">"Software QA Engineer"</span>,</span><span class="ln">    <span class="tk-s">"Product Owner"</span>,</span><span class="ln">    <span class="tk-s">"Flutter Developer"</span>,</span><span class="ln">  ],</span><span class="ln">  <span class="tk-f">focus</span>: [<span class="tk-s">"web QA"</span>, <span class="tk-s">"mobile QA"</span>, <span class="tk-s">"UI test automation"</span>],</span><span class="ln">  <span class="tk-f">platforms</span>: [<span class="tk-s">"Web"</span>, <span class="tk-s">"Android"</span>, <span class="tk-s">"iOS"</span>],</span><span class="ln">  <span class="tk-f">shippedProjects</span>: <span class="tk-n">13</span>,</span><span class="ln">  <span class="tk-f">since</span>: <span class="tk-n">2016</span>,</span><span class="ln">  <span class="tk-f">findBugs</span>: () <span class="tk-p">=&gt;</span> <span class="tk-s">"before your users do"</span>,</span><span class="ln">} <span class="tk-k">as const</span>;</span><span class="ln"></span><span class="ln"><span class="tk-c">// ✓ all checks passed</span></span></code></pre>
+        </figure>
+      </div>
+    </section>
+
+    <!-- 02 · PROJECTS -->
+    <section class="section" id="projects" aria-labelledby="projects-title">
+      <header class="section__head" data-reveal>
+        <span class="section__index mono">02.</span>
+        <h2 class="section__title" id="projects-title" data-scramble-reveal>Projects</h2>
+        <span class="section__rule" aria-hidden="true"></span>
+      </header>
+
+      <div class="filters" role="group" aria-label="Filter projects by role" data-reveal>
+        <button class="chip is-active" type="button" data-filter="all" aria-pressed="true">All <span class="chip__count">13</span></button>
+        <button class="chip" type="button" data-filter="lead" aria-pressed="false">Lead QA <span class="chip__count">1</span></button>
+        <button class="chip" type="button" data-filter="qa" aria-pressed="false">QA Engineer <span class="chip__count">9</span></button>
+        <button class="chip" type="button" data-filter="pm" aria-pressed="false">QA &amp; PM <span class="chip__count">2</span></button>
+        <button class="chip" type="button" data-filter="dev" aria-pressed="false">Flutter Dev <span class="chip__count">1</span></button>
+      </div>
+      <p class="sr-only" id="filter-status" aria-live="polite"></p>
+
+      <ul class="grid" id="project-grid">
+        <li class="project" data-role="lead" data-reveal>
+          <article class="card" data-tilt>
+            <div class="card__media"><img src="assets/images/finleapconnectcover.png" alt="" width="1200" height="628" loading="lazy" decoding="async"><span class="card__year mono">2022</span></div>
+            <div class="card__body">
+              <h3 class="card__title">finleap Connect</h3>
+              <p class="card__platform">Android &amp; iOS - React Native Apps</p>
+              <dl class="card__meta mono">
+                <div><dt>position</dt><dd>Lead QA Engineer</dd></div>
+                <div><dt>year</dt><dd>2022</dd></div>
+                <div><dt>industry</dt><dd>Fintech, Open Banking</dd></div>
+              </dl>
+            </div>
+            <span class="card__glare" aria-hidden="true"></span>
+          </article>
+        </li>
+        <li class="project" data-role="qa" data-reveal>
+          <article class="card" data-tilt>
+            <div class="card__media"><img src="assets/images/vidyodan.png" alt="" width="1200" height="630" loading="lazy" decoding="async"><span class="card__year mono">2021</span></div>
+            <div class="card__body">
+              <h3 class="card__title">Vidyodan - Vcommerce</h3>
+              <p class="card__platform">Android &amp; iOS Apps</p>
+              <dl class="card__meta mono">
+                <div><dt>position</dt><dd>Software QA Engineer</dd></div>
+                <div><dt>year</dt><dd>2021</dd></div>
+                <div><dt>industry</dt><dd>Shopping, E-Commerce</dd></div>
+              </dl>
+            </div>
+            <span class="card__glare" aria-hidden="true"></span>
+          </article>
+        </li>
+        <li class="project" data-role="dev" data-reveal>
+          <article class="card" data-tilt>
+            <div class="card__media"><img src="assets/images/turkiyepetrollericover.png" alt="" width="1200" height="630" loading="lazy" decoding="async"><span class="card__year mono">2020</span></div>
+            <div class="card__body">
+              <h3 class="card__title">Türkiye Petrolleri</h3>
+              <p class="card__platform">Flutter App (iOS &amp; Android)</p>
+              <dl class="card__meta mono">
+                <div><dt>position</dt><dd>Flutter Developer</dd></div>
+                <div><dt>year</dt><dd>2020</dd></div>
+                <div><dt>industry</dt><dd>Payment System, Auto &amp; Vehicles</dd></div>
+              </dl>
+            </div>
+            <span class="card__glare" aria-hidden="true"></span>
+          </article>
+        </li>
+        <li class="project" data-role="pm" data-reveal>
+          <article class="card" data-tilt>
+            <div class="card__media"><img src="assets/images/pointcycover.png" alt="" width="1200" height="630" loading="lazy" decoding="async"><span class="card__year mono">2019</span></div>
+            <div class="card__body">
+              <h3 class="card__title">Pointcy</h3>
+              <p class="card__platform">Web &amp; Android &amp; iOS Apps</p>
+              <dl class="card__meta mono">
+                <div><dt>position</dt><dd>Software QA Engineer &amp; Project Manager</dd></div>
+                <div><dt>year</dt><dd>2019</dd></div>
+                <div><dt>industry</dt><dd>Tourism, Food &amp; Drink</dd></div>
+              </dl>
+            </div>
+            <span class="card__glare" aria-hidden="true"></span>
+          </article>
+        </li>
+        <li class="project" data-role="pm" data-reveal>
+          <article class="card" data-tilt>
+            <div class="card__media"><img src="assets/images/sahacover.png" alt="" width="1200" height="630" loading="lazy" decoding="async"><span class="card__year mono">2019</span></div>
+            <div class="card__body">
+              <h3 class="card__title">Saha</h3>
+              <p class="card__platform">Web &amp; Android &amp; iOS Apps</p>
+              <dl class="card__meta mono">
+                <div><dt>position</dt><dd>Software QA Engineer &amp; Project Manager</dd></div>
+                <div><dt>year</dt><dd>2019</dd></div>
+                <div><dt>industry</dt><dd>Live Competition, Entertainment, Sports</dd></div>
+              </dl>
+            </div>
+            <span class="card__glare" aria-hidden="true"></span>
+          </article>
+        </li>
+        <li class="project" data-role="qa" data-reveal>
+          <article class="card" data-tilt>
+            <div class="card__media"><img src="assets/images/coinyprocover.png" alt="" width="1200" height="630" loading="lazy" decoding="async"><span class="card__year mono">2019</span></div>
+            <div class="card__body">
+              <h3 class="card__title">CoinyPro</h3>
+              <p class="card__platform">Web &amp; Android &amp; iOS Apps</p>
+              <dl class="card__meta mono">
+                <div><dt>position</dt><dd>Software QA Engineer</dd></div>
+                <div><dt>year</dt><dd>2019</dd></div>
+                <div><dt>industry</dt><dd>Blockchain, Cryptocurrency, Fintech</dd></div>
+              </dl>
+            </div>
+            <span class="card__glare" aria-hidden="true"></span>
+          </article>
+        </li>
+        <li class="project" data-role="qa" data-reveal>
+          <article class="card" data-tilt>
+            <div class="card__media"><img src="assets/images/coinycover.png" alt="" width="1200" height="630" loading="lazy" decoding="async"><span class="card__year mono">2018</span></div>
+            <div class="card__body">
+              <h3 class="card__title">Coiny</h3>
+              <p class="card__platform">Web &amp; Android &amp; iOS Apps</p>
+              <dl class="card__meta mono">
+                <div><dt>position</dt><dd>Software QA Engineer</dd></div>
+                <div><dt>year</dt><dd>2018</dd></div>
+                <div><dt>industry</dt><dd>Blockchain, Cryptocurrency, Fintech</dd></div>
+              </dl>
+            </div>
+            <span class="card__glare" aria-hidden="true"></span>
+          </article>
+        </li>
+        <li class="project" data-role="qa" data-reveal>
+          <article class="card" data-tilt>
+            <div class="card__media"><img src="assets/images/doctorturkeycover.png" alt="" width="1200" height="630" loading="lazy" decoding="async"><span class="card__year mono">2018</span></div>
+            <div class="card__body">
+              <h3 class="card__title">DoctorTurkey</h3>
+              <p class="card__platform">Web &amp; Android &amp; iOS Apps</p>
+              <dl class="card__meta mono">
+                <div><dt>position</dt><dd>Software QA Engineer</dd></div>
+                <div><dt>year</dt><dd>2018</dd></div>
+                <div><dt>industry</dt><dd>Health, Video Conference, Tele-medicine</dd></div>
+              </dl>
+            </div>
+            <span class="card__glare" aria-hidden="true"></span>
+          </article>
+        </li>
+        <li class="project" data-role="qa" data-reveal>
+          <article class="card" data-tilt>
+            <div class="card__media"><img src="assets/images/jetfixcover.png" alt="" width="1200" height="630" loading="lazy" decoding="async"><span class="card__year mono">2018</span></div>
+            <div class="card__body">
+              <h3 class="card__title">JetFix</h3>
+              <p class="card__platform">Web &amp; Android &amp; iOS Apps</p>
+              <dl class="card__meta mono">
+                <div><dt>position</dt><dd>Software QA Engineer</dd></div>
+                <div><dt>year</dt><dd>2018</dd></div>
+                <div><dt>industry</dt><dd>Customer Support, Chatbot</dd></div>
+              </dl>
+            </div>
+            <span class="card__glare" aria-hidden="true"></span>
+          </article>
+        </li>
+        <li class="project" data-role="qa" data-reveal>
+          <article class="card" data-tilt>
+            <div class="card__media"><img src="assets/images/bmwonlinecover.png" alt="" width="1200" height="630" loading="lazy" decoding="async"><span class="card__year mono">2017</span></div>
+            <div class="card__body">
+              <h3 class="card__title">BMW Online</h3>
+              <p class="card__platform">iOS App</p>
+              <dl class="card__meta mono">
+                <div><dt>position</dt><dd>Software QA Engineer</dd></div>
+                <div><dt>year</dt><dd>2017</dd></div>
+                <div><dt>industry</dt><dd>Automotive, Location Based</dd></div>
+              </dl>
+            </div>
+            <span class="card__glare" aria-hidden="true"></span>
+          </article>
+        </li>
+        <li class="project" data-role="qa" data-reveal>
+          <article class="card" data-tilt>
+            <div class="card__media"><img src="assets/images/pakettaxicover.png" alt="" width="1200" height="630" loading="lazy" decoding="async"><span class="card__year mono">2017</span></div>
+            <div class="card__body">
+              <h3 class="card__title">PaketTaxi</h3>
+              <p class="card__platform">Web &amp; Android &amp; iOS Apps</p>
+              <dl class="card__meta mono">
+                <div><dt>position</dt><dd>Software QA Engineer</dd></div>
+                <div><dt>year</dt><dd>2017</dd></div>
+                <div><dt>industry</dt><dd>Location-Based, Big Data, Logistics, Business</dd></div>
+              </dl>
+            </div>
+            <span class="card__glare" aria-hidden="true"></span>
+          </article>
+        </li>
+        <li class="project" data-role="qa" data-reveal>
+          <article class="card" data-tilt>
+            <div class="card__media"><img src="assets/images/falbellacover.png" alt="" width="1200" height="630" loading="lazy" decoding="async"><span class="card__year mono">2017</span></div>
+            <div class="card__body">
+              <h3 class="card__title">Falbella</h3>
+              <p class="card__platform">Android &amp; iOS Apps</p>
+              <dl class="card__meta mono">
+                <div><dt>position</dt><dd>Software QA Engineer</dd></div>
+                <div><dt>year</dt><dd>2017</dd></div>
+                <div><dt>industry</dt><dd>Entertainment</dd></div>
+              </dl>
+            </div>
+            <span class="card__glare" aria-hidden="true"></span>
+          </article>
+        </li>
+        <li class="project" data-role="qa" data-reveal>
+          <article class="card" data-tilt>
+            <div class="card__media"><img src="assets/images/supercareercover.png" alt="" width="1200" height="630" loading="lazy" decoding="async"><span class="card__year mono">2016</span></div>
+            <div class="card__body">
+              <h3 class="card__title">SuperCareer</h3>
+              <p class="card__platform">Web &amp; Android &amp; iOS Apps</p>
+              <dl class="card__meta mono">
+                <div><dt>position</dt><dd>Software QA Engineer</dd></div>
+                <div><dt>year</dt><dd>2016</dd></div>
+                <div><dt>industry</dt><dd>Business, Job, Career</dd></div>
+              </dl>
+            </div>
+            <span class="card__glare" aria-hidden="true"></span>
+          </article>
+        </li>
+      </ul>
+    </section>
+
+    <!-- 03 · CONTACT -->
+    <section class="section contact" id="contact" aria-labelledby="contact-title">
+      <header class="section__head" data-reveal>
+        <span class="section__index mono">03.</span>
+        <h2 class="section__title" id="contact-title" data-scramble-reveal>Contact</h2>
+        <span class="section__rule" aria-hidden="true"></span>
+      </header>
+
+      <div class="contact__card" data-reveal>
+        <p class="contact__lead">Shipping something that needs to work the first time? Let’s talk.</p>
+        <div class="contact__email">
+          <a class="contact__address mono" href="mailto:evrenosevrenos@outlook.com">evrenosevrenos@outlook.com</a>
+          <button class="icon-btn" type="button" data-copy="evrenosevrenos@outlook.com" aria-label="Copy email address" title="Copy email">
+            <svg class="icon" aria-hidden="true"><use href="#i-copy"/></svg>
+          </button>
+        </div>
+        <ul class="socials socials--inline" aria-label="Social links">
+          <li><a class="social" href="https://www.linkedin.com/in/evrenos-evrenos/" target="_blank" rel="noopener noreferrer" data-magnetic aria-label="LinkedIn profile (opens in a new tab)"><svg class="icon" aria-hidden="true"><use href="#i-linkedin"/></svg></a></li>
+          <li><a class="social" href="https://github.com/evrenos" target="_blank" rel="noopener noreferrer" data-magnetic aria-label="GitHub profile (opens in a new tab)"><svg class="icon" aria-hidden="true"><use href="#i-github"/></svg></a></li>
+          <li><a class="social" href="mailto:evrenosevrenos@outlook.com" data-magnetic aria-label="Send an email"><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg></a></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Made with <span class="mono accent">&lt;/&gt;</span> &amp; vanilla JS · © <span id="year">2026</span> Evrenos Evrenos</p>
+    <p class="footer__hint mono">press <kbd><span data-mod-key>Ctrl</span> K</kbd> · try ↑↑↓↓←→←→BA</p>
+  </footer>
+
+  <a class="to-top" href="#home" id="to-top" aria-label="Back to top">
+    <svg class="to-top__ring" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="22"/><circle class="to-top__progress" id="to-top-progress" cx="24" cy="24" r="22" pathLength="100"/></svg>
+    <svg class="icon" aria-hidden="true"><use href="#i-arrow-up"/></svg>
+  </a>
+
+  <!-- Command palette -->
+  <dialog class="palette" id="palette" aria-label="Command menu">
+    <div class="palette__search">
+      <svg class="icon" aria-hidden="true"><use href="#i-search"/></svg>
+      <input id="palette-input" type="text" placeholder="Type a command or search…" autocomplete="off" spellcheck="false"
+             role="combobox" aria-expanded="true" aria-controls="palette-list" aria-autocomplete="list">
+      <kbd>esc</kbd>
+    </div>
+    <ul class="palette__list" id="palette-list" role="listbox" aria-label="Commands"></ul>
+    <div class="palette__foot mono" aria-hidden="true"><span><kbd>↑</kbd><kbd>↓</kbd> navigate</span><span><kbd>↵</kbd> run</span><span><kbd>esc</kbd> close</span></div>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <canvas class="matrix" id="matrix" aria-hidden="true"></canvas>
 </body>
 </html>
