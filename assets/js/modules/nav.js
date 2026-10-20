@@ -1,4 +1,5 @@
 import { $, $$, goTo } from './utils.js';
+import { t } from './i18n.js';
 
 /** Header state, scroll progress, active-section indicator, mobile menu, back-to-top. */
 export function initNav() {
@@ -46,7 +47,8 @@ export function initNav() {
       l.classList.toggle('is-active', on);
       if (on) { l.setAttribute('aria-current', 'location'); active = l; } else l.removeAttribute('aria-current');
     }
-    moveIndicator(active);
+    if (active) moveIndicator(active);
+    else indicator.style.opacity = '0';
   };
 
   const sections = links.map((l) => document.getElementById(l.dataset.section)).filter(Boolean);
@@ -58,7 +60,7 @@ export function initNav() {
       const r = visible.get(s.id) || 0;
       if (r > bestRatio) { best = s.id; bestRatio = r; }
     }
-    if (best) setActive(best);
+    setActive(best);
   }, { rootMargin: '-35% 0px -55% 0px', threshold: [0, 0.01, 0.25, 0.5, 1] });
   sections.forEach((s) => io.observe(s));
   window.addEventListener('resize', () => moveIndicator($('.nav__link.is-active')), { passive: true });
@@ -66,13 +68,13 @@ export function initNav() {
   // --- Mobile menu ---
   const closeMenu = () => {
     burger.setAttribute('aria-expanded', 'false');
-    burger.setAttribute('aria-label', 'Open menu');
+    burger.setAttribute('aria-label', t.menuOpen);
     list.classList.remove('is-open');
   };
   burger.addEventListener('click', () => {
     const open = burger.getAttribute('aria-expanded') !== 'true';
     burger.setAttribute('aria-expanded', String(open));
-    burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    burger.setAttribute('aria-label', open ? t.menuClose : t.menuOpen);
     list.classList.toggle('is-open', open);
   });
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });

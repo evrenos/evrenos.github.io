@@ -1,4 +1,5 @@
 import { $, prefersReducedMotion, storage } from './utils.js';
+import { t } from './i18n.js';
 
 const META_COLORS = { light: '#faf9f7', dark: '#100c0b' };
 const root = document.documentElement;
@@ -10,7 +11,7 @@ export function setTheme(theme, { persist = false } = {}) {
   root.setAttribute('data-theme', theme);
   if (persist) storage.set('theme', theme);
   $('meta[name="theme-color"]')?.setAttribute('content', META_COLORS[theme]);
-  $('#theme-toggle')?.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+  $('#theme-toggle')?.setAttribute('aria-label', theme === 'dark' ? t.themeToLight || 'Switch to light mode' : t.themeToDark || 'Switch to dark mode');
   document.dispatchEvent(new CustomEvent('themechange', { detail: theme }));
 }
 

@@ -1,9 +1,11 @@
 import { $, copyText, goTo, toast } from './utils.js';
 import { toggleTheme } from './theme.js';
+import { t } from './i18n.js';
 
 const EMAIL = 'evrenosevrenos@outlook.com';
 const LINKEDIN = 'https://www.linkedin.com/in/evrenos-evrenos/';
 const GITHUB = 'https://github.com/evrenos';
+const FINBYTE = 'https://finbyte.com';
 
 const openExternal = (url) => window.open(url, '_blank', 'noopener,noreferrer');
 
@@ -14,23 +16,30 @@ export function initPalette({ projects, matrix }) {
   const list = $('#palette-list');
   if (!dialog || typeof dialog.showModal !== 'function') return;
 
+  const L = t.palette;
+  const G = L.groups;
   const commands = [
-    { group: 'Navigate', label: 'Home', icon: 'i-terminal', hint: '#home', run: () => goTo('home') },
-    { group: 'Navigate', label: 'About', icon: 'i-terminal', hint: '#about', run: () => goTo('about') },
-    { group: 'Navigate', label: 'Projects', icon: 'i-terminal', hint: '#projects', run: () => goTo('projects') },
-    { group: 'Navigate', label: 'Contact', icon: 'i-terminal', hint: '#contact', run: () => goTo('contact') },
-    { group: 'Projects', label: 'Show all projects', icon: 'i-search', run: () => filter('all') },
-    { group: 'Projects', label: 'Filter: Lead QA', icon: 'i-search', run: () => filter('lead') },
-    { group: 'Projects', label: 'Filter: QA Engineer', icon: 'i-search', run: () => filter('qa') },
-    { group: 'Projects', label: 'Filter: QA & Project Manager', icon: 'i-search', run: () => filter('pm') },
-    { group: 'Projects', label: 'Filter: Flutter Developer', icon: 'i-search', run: () => filter('dev') },
-    { group: 'Links', label: 'Open LinkedIn / Resume', icon: 'i-linkedin', hint: '↗', run: () => openExternal(LINKEDIN) },
-    { group: 'Links', label: 'Open GitHub', icon: 'i-github', hint: '↗', run: () => openExternal(GITHUB) },
-    { group: 'Links', label: 'Send an email', icon: 'i-mail', run: () => { location.href = `mailto:${EMAIL}`; } },
-    { group: 'Links', label: 'Copy email address', icon: 'i-copy', run: async () => toast((await copyText(EMAIL)) ? 'Email copied ✓' : 'Copy failed') },
-    { group: 'System', label: 'Toggle dark / light theme', icon: 'i-moon', run: () => toggleTheme() },
-    { group: 'System', label: 'Enter the matrix', icon: 'i-terminal', hint: 'easter egg', run: () => matrix() },
-  ];
+    { group: G.nav, label: L.home, icon: 'i-terminal', hint: '#home', run: () => goTo('home') },
+    { group: G.nav, label: L.about, icon: 'i-terminal', hint: '#about', run: () => goTo('about') },
+    { group: G.nav, label: L.experience, icon: 'i-terminal', hint: '#experience', run: () => goTo('experience') },
+    { group: G.nav, label: L.fintech, icon: 'i-card', hint: '#fintech', run: () => goTo('fintech') },
+    { group: G.nav, label: L.projects, icon: 'i-terminal', hint: '#projects', run: () => goTo('projects') },
+    { group: G.nav, label: L.contact, icon: 'i-terminal', hint: '#contact', run: () => goTo('contact') },
+    { group: G.projects, label: L.filterFintech, icon: 'i-card', run: () => filter('fintech') },
+    { group: G.projects, label: L.filterAll, icon: 'i-search', run: () => filter('all') },
+    { group: G.projects, label: L.filterLead, icon: 'i-search', run: () => filter('lead') },
+    { group: G.projects, label: L.filterQa, icon: 'i-search', run: () => filter('qa') },
+    { group: G.projects, label: L.filterPm, icon: 'i-search', run: () => filter('pm') },
+    { group: G.projects, label: L.filterDev, icon: 'i-search', run: () => filter('dev') },
+    { group: G.links, label: L.linkedin, icon: 'i-linkedin', hint: '↗', run: () => openExternal(LINKEDIN) },
+    { group: G.links, label: L.github, icon: 'i-github', hint: '↗', run: () => openExternal(GITHUB) },
+    { group: G.links, label: L.finbyte, icon: 'i-external', hint: '↗', run: () => openExternal(FINBYTE) },
+    { group: G.links, label: L.email, icon: 'i-mail', run: () => { location.href = `mailto:${EMAIL}`; } },
+    { group: G.links, label: L.copyEmail, icon: 'i-copy', run: async () => toast((await copyText(EMAIL)) ? t.copied : t.copyFailed) },
+    { group: G.system, label: L.language, icon: 'i-globe', hint: t.lang === 'tr' ? 'EN' : 'TR', run: () => { location.href = t.altHref; } },
+    { group: G.system, label: L.theme, icon: 'i-moon', run: () => toggleTheme() },
+    { group: G.system, label: L.matrix, icon: 'i-terminal', hint: L.easterEgg, run: () => matrix() },
+  ].filter((c) => c.label);
 
   function filter(name) {
     projects?.setFilter(name);
@@ -42,7 +51,7 @@ export function initPalette({ projects, matrix }) {
 
   const score = (cmd, q) => {
     if (!q) return 1;
-    const hay = `${cmd.group} ${cmd.label}`.toLowerCase();
+    const hay = `${cmd.group} ${cmd.label}`.toLocaleLowerCase(t.lang);
     if (hay.includes(q)) return 2 + (cmd.label.toLowerCase().startsWith(q) ? 1 : 0);
     // subsequence match: "lnk" → "LinKedin"
     let i = 0;
@@ -51,7 +60,7 @@ export function initPalette({ projects, matrix }) {
   };
 
   const render = () => {
-    const q = input.value.trim().toLowerCase();
+    const q = input.value.trim().toLocaleLowerCase(t.lang);
     results = commands
       .map((c) => ({ c, s: score(c, q) }))
       .filter((r) => r.s > 0)
@@ -63,7 +72,7 @@ export function initPalette({ projects, matrix }) {
     if (!results.length) {
       const li = document.createElement('li');
       li.className = 'palette__empty';
-      li.textContent = `command not found: ${q}`;
+      li.textContent = `${t.paletteEmpty}: ${q}`;
       list.append(li);
       input.removeAttribute('aria-activedescendant');
       return;

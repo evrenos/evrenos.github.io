@@ -1,4 +1,6 @@
 import { $, $$, copyText, isMac, toast } from './modules/utils.js';
+import { t } from './modules/i18n.js';
+import { monthsBetween, tenure } from './modules/duration.js';
 import { initTheme } from './modules/theme.js';
 import { runBoot } from './modules/boot.js';
 import { initNav } from './modules/nav.js';
@@ -7,7 +9,9 @@ import { initBackground } from './modules/background.js';
 import { initPointerEffects } from './modules/pointer.js';
 import { TextScramble, initHoverScramble } from './modules/scramble.js';
 import { initTypewriter } from './modules/typewriter.js';
-import { initIndustries, initProjects } from './modules/projects.js';
+import { initProjects } from './modules/projects.js';
+import { initPipeline } from './modules/pipeline.js';
+import { initProjectModal } from './modules/project-modal.js';
 import { initPalette } from './modules/palette.js';
 import { initMatrix } from './modules/matrix.js';
 
@@ -21,17 +25,26 @@ function safe(name, fn) {
   }
 }
 
-function initStaticBits() {
-  $('#year').textContent = String(new Date().getFullYear());
-  const today = $('#today');
+/** Date-dependent text is rendered at build time; refresh it so it never goes stale. */
+function initLiveDates() {
   const now = new Date();
-  today.dateTime = now.toISOString().slice(0, 10);
-  today.textContent = now.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
-  if (isMac) $$('[data-mod-key]').forEach((el) => { el.textContent = '⌘'; });
+  $('#year').textContent = String(now.getFullYear());
 
+  const today = $('#today');
+  today.dateTime = now.toISOString().slice(0, 10);
+  today.textContent = now.toLocaleDateString(t.dateLocale, { day: 'numeric', month: 'long', year: 'numeric' });
+
+  for (const el of $$('[data-tenure-from]')) el.textContent = tenure(el.dataset.tenureFrom, null, t.lang, now);
+  for (const el of $$('[data-years-since]')) el.dataset.count = String(now.getFullYear() - Number(el.dataset.yearsSince));
+  for (const el of $$('[data-tenure-years]')) el.dataset.count = String(Math.floor(monthsBetween(el.dataset.tenureYears, null, now) / 12));
+  for (const el of $$('[data-count][data-suffix]')) el.textContent = `${el.dataset.count}${el.dataset.suffix}`;
+}
+
+function initStaticBits() {
+  if (isMac) $$('[data-mod-key]').forEach((el) => { el.textContent = '⌘'; });
   for (const btn of $$('[data-copy]')) {
     btn.addEventListener('click', async () => {
-      toast((await copyText(btn.dataset.copy)) ? 'Email copied ✓' : 'Copy failed — select it manually');
+      toast((await copyText(btn.dataset.copy)) ? t.copied : t.copyFailed);
     });
   }
 }
@@ -56,13 +69,14 @@ function greetDevelopers() {
 
 async function init() {
   safe('theme', initTheme);
+  safe('dates', initLiveDates);
   safe('static', initStaticBits);
-  safe('industries', initIndustries);
   safe('nav', initNav);
   safe('background', () => initBackground($('#bg-canvas')));
   safe('pointer', initPointerEffects);
   safe('scramble', initHoverScramble);
   const projects = safe('projects', initProjects);
+  safe('project-modal', initProjectModal);
   const matrix = safe('matrix', initMatrix) || (() => {});
   safe('palette', () => initPalette({ projects, matrix }));
   safe('sw', retireLegacyServiceWorker);
@@ -72,6 +86,7 @@ async function init() {
 
   // Start reveals once the boot overlay is gone so the hero animates in view.
   safe('reveal', initReveal);
+  safe('pipeline', initPipeline);
 
   // Hero intro: decrypt the name, then start cycling roles.
   const name = $('#hero-name-text');

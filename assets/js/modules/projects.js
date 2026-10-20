@@ -1,11 +1,12 @@
-import { $, $$, prefersReducedMotion } from './utils.js';
+import { $, $$, goTo, prefersReducedMotion } from './utils.js';
+import { fmt, t } from './i18n.js';
 
-/** Role filters for the project grid (animated with View Transitions where supported). */
+/** Project filters (role + fintech tags), animated with View Transitions where supported. */
 export function initProjects() {
   const grid = $('#project-grid');
   const chips = $$('.chip[data-filter]');
   const status = $('#filter-status');
-  if (!grid || !chips.length) return;
+  if (!grid || !chips.length) return undefined;
 
   const items = $$('.project', grid);
   items.forEach((item, i) => { item.style.viewTransitionName = `project-${i}`; });
@@ -13,7 +14,8 @@ export function initProjects() {
   const apply = (filter) => {
     let shown = 0;
     for (const item of items) {
-      const match = filter === 'all' || item.dataset.role === filter;
+      const tags = (item.dataset.tags || '').split(' ');
+      const match = filter === 'all' || tags.includes(filter);
       item.hidden = !match;
       if (match) {
         shown++;
@@ -25,12 +27,8 @@ export function initProjects() {
       c.classList.toggle('is-active', on);
       c.setAttribute('aria-pressed', String(on));
     }
-    status.textContent = `Showing ${shown} project${shown === 1 ? '' : 's'}`;
+    status.textContent = shown === 1 ? t.filterStatusOne : fmt(t.filterStatus, { n: shown });
   };
-
-  for (const chip of chips) {
-    chip.addEventListener('click', () => setFilter(chip.dataset.filter));
-  }
 
   function setFilter(filter) {
     if (document.startViewTransition && !prefersReducedMotion()) {
@@ -40,34 +38,15 @@ export function initProjects() {
     }
   }
 
-  return { setFilter };
-}
+  for (const chip of chips) chip.addEventListener('click', () => setFilter(chip.dataset.filter));
 
-/** Builds the industries marquee and the "industry tags" stat from the cards themselves. */
-export function initIndustries() {
-  const track = $('#marquee-track');
-  const stat = $('#stat-industries');
-  const seen = new Map();
-  for (const dd of $$('.card__meta div:last-child dd')) {
-    for (const raw of dd.textContent.split(',')) {
-      const label = raw.trim();
-      const key = label.toLowerCase().replace(/[^a-z]/g, '');
-      if (label && !seen.has(key)) seen.set(key, label);
-    }
+  // "Show fintech projects" style shortcuts elsewhere on the page.
+  for (const btn of $$('[data-filter-go]')) {
+    btn.addEventListener('click', () => {
+      apply(btn.dataset.filterGo);
+      goTo('projects');
+    });
   }
-  const industries = [...seen.values()];
-  if (stat) {
-    stat.dataset.count = String(industries.length);
-    stat.textContent = String(industries.length);
-  }
-  if (!track) return;
-  // Two copies so the -50% translate loops seamlessly.
-  for (let copy = 0; copy < 2; copy++) {
-    for (const label of industries) {
-      const span = document.createElement('span');
-      span.className = 'marquee__item';
-      span.textContent = label;
-      track.append(span);
-    }
-  }
+
+  return { setFilter };
 }

@@ -1,0 +1,12 @@
+{
+  "name": "evrenos.github.io",
+  "private": true,
+  "description": "Portfolio of Evrenos Evrenos — Staff QA Engineer (fintech, payments & banking).",
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "serve": "node serve.mjs",
+    "dev": "node build.mjs && node serve.mjs"
+  },
+  "engines": { "node": ">=18" }
+}

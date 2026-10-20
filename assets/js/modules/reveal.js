@@ -35,7 +35,7 @@ function countUp(el) {
   const tick = (now) => {
     const t = Math.min(1, (now - start) / duration);
     const eased = 1 - Math.pow(1 - t, 4);
-    el.textContent = String(Math.round(from + (to - from) * eased));
+    el.textContent = `${Math.round(from + (to - from) * eased)}${el.dataset.suffix || ''}`;
     if (t < 1) requestAnimationFrame(tick);
   };
   requestAnimationFrame(tick);

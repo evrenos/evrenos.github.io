@@ -1,4 +1,5 @@
 import { $, prefersReducedMotion, toast } from './utils.js';
+import { t } from './i18n.js';
 
 const KONAMI = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
 
@@ -21,7 +22,7 @@ export function initMatrix() {
     const accent = getComputedStyle(document.documentElement).getPropertyValue('--accent-rgb').trim();
     const started = performance.now();
     canvas.classList.add('is-on');
-    toast('wake up, neo… (esc to exit)');
+    toast(t.matrix);
 
     const stop = () => {
       running = false;

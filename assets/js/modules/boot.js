@@ -1,13 +1,7 @@
 import { $, storage } from './utils.js';
+import { t } from './i18n.js';
 
-const LINES = [
-  ['<span class="hl">$</span> ssh evrenos@portfolio', 260],
-  ['<span class="dim">› establishing secure session…</span>', 160],
-  ['› loading profile ............ <span class="ok">[ok]</span>', 150],
-  ['› fetching 13 projects ....... <span class="ok">[ok]</span>', 150],
-  ['› running regression suite ... <span class="ok">all green ✓</span>', 220],
-  ['<span class="hl">›</span> ready. welcome 👋', 260],
-];
+const DELAYS = [260, 160, 150, 220, 150, 260];
 
 /**
  * First-visit-per-session terminal boot. Resolves when the overlay is gone.
@@ -40,9 +34,10 @@ export function runBoot() {
     window.addEventListener('pointerdown', skip, { once: true });
 
     (async () => {
-      for (const [html, delay] of LINES) {
+      for (const [i, html] of t.boot.entries()) {
+        const delay = DELAYS[i] ?? 180;
         if (skipped) return;
-        // Static, trusted markup defined above — never user input.
+        // Static, trusted markup from the build's i18n block — never user input.
         log.insertAdjacentHTML('beforeend', `${html}\n`);
         await new Promise((r) => setTimeout(r, delay));
       }
